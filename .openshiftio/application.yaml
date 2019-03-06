@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: spring-boot-rest-http
+  name: spring-boot-rest-http-2
   annotations:
     iconClass: icon-spring
     tags: spring-boot, rest, java, microservice
-    openshift.io/display-name: Spring Boot - REST Http Endpoint
+    openshift.io/display-name: Spring Boot - REST Http Endpoint 2
     openshift.io/provider-display-name: "Red Hat, Inc."
     openshift.io/documentation-url: "https://appdev.prod-preview.openshift.io/docs/spring-boot-runtime.html#mission-http-api-spring-boot-tomcat"
     description: >-
@@ -49,7 +49,7 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: spring-boot-rest-http
+    name: spring-boot-rest-http-2
   spec: {}
 - apiVersion: v1
   kind: ImageStream
@@ -64,7 +64,7 @@ objects:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
-    name: spring-boot-rest-http
+    name: spring-boot-rest-http-2
   spec:
     output:
       to:
@@ -106,11 +106,11 @@ objects:
   kind: Service
   metadata:
     labels:
-      app: spring-boot-rest-http
+      app: spring-boot-rest-http-2
       provider: snowdrop
       version: "1.5.17-4-redhat"
       group: io.openshift.booster
-    name: spring-boot-rest-http
+    name: spring-boot-rest-http-2
   spec:
     ports:
     - name: http
@@ -118,22 +118,22 @@ objects:
       protocol: TCP
       targetPort: 8080
     selector:
-      app: spring-boot-rest-http
+      app: spring-boot-rest-http-2
       provider: snowdrop
       group: io.openshift.booster
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
     labels:
-      app: spring-boot-rest-http
+      app: spring-boot-rest-http-2
       provider: snowdrop
       version: "1.5.17-4-redhat"
       group: io.openshift.booster
-    name: spring-boot-rest-http
+    name: spring-boot-rest-http-2
   spec:
     replicas: 1
     selector:
-      app: spring-boot-rest-http
+      app: spring-boot-rest-http-2
       provider: snowdrop
       group: io.openshift.booster
     strategy:
@@ -143,7 +143,7 @@ objects:
     template:
       metadata:
         labels:
-          app: spring-boot-rest-http
+          app: spring-boot-rest-http-2
           provider: snowdrop
           version: "1.5.17-4-redhat"
           group: io.openshift.booster
@@ -192,14 +192,14 @@ objects:
   kind: Route
   metadata:
     labels:
-      app: spring-boot-rest-http
+      app: spring-boot-rest-http-2
       provider: snowdrop
       version: "1.5.17-4-redhat"
       group: io.openshift.booster
-    name: spring-boot-rest-http
+    name: spring-boot-rest-http-2
   spec:
     port:
       targetPort: 8080
     to:
       kind: Service
-      name: spring-boot-rest-http
+      name: spring-boot-rest-http-2
