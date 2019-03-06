@@ -29,7 +29,9 @@ public class GreetingEndpoint {
     @GET
     @Produces("application/json")
     public Greeting greeting(@QueryParam("name") @DefaultValue("World") String name) {
-        final String message = String.format(Greeting.FORMAT, name);
+        String prefix = System.getenv().getOrDefault("hello-world-config-key", "config1");
+        String suffix = System.getenv().getOrDefault("hello-world-config-key-2", "config2");
+        final String message = String.format(prefix+" "+Greeting.FORMAT+" "+suffix, name);
         return new Greeting(message);
     }
 }
