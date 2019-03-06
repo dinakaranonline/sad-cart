@@ -16,8 +16,10 @@ public class GreetingController {
 
     @RequestMapping("/greeting1")
     public Greeting1 greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        String prefix = System.getenv().getOrDefault("hello-world-config-key", "config1");
+        String suffix = System.getenv().getOrDefault("hello-world-config-key-2", "config2");
         return new Greeting1(counter.incrementAndGet(),
-                            String.format(template, name));
+                            String.format(prefix+" "+template+" "+suffix, name));
     }
 
     @GetMapping(path = "/logout")
